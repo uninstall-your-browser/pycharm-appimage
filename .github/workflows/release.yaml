@@ -1,0 +1,43 @@
+name: Build AppImage
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1,20 * *"
+  push:
+    branches:
+      - "master"
+
+jobs:
+  version:
+    name: PyCharm AppImage
+    runs-on: ubuntu-20.04
+    env:
+      GITHUB_TOKEN: ${{ secrets.APPIMAGE_PUB }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        id: build
+        uses: valicm/appimage-bash@v1.1
+        with:
+          version_url: 'https://data.services.jetbrains.com/products/download?code=PCC&platform=linux'
+          version_file: 'product-info.json'
+          version_bash: 'jq -r  .version'
+          version_icon: 'pycharm.svg'
+          version_directory: 'opt/pycharm'
+      - name: Upload artifact
+        if: ${{ env.APP_UPDATE_NEEDED == 'true' }}
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.APP_SHORT_NAME }}.AppImage
+          path: 'dist'
+      - name: Release
+        if: ${{ env.APP_UPDATE_NEEDED == 'true' }}
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          title: ${{ env.APP_NAME }} AppImage ${{ env.APP_VERSION }}
+          automatic_release_tag: latest
+          prerelease: false
+          files: |
+            dist/
+          repo_token: ${{ secrets.APPIMAGE_PUB }}
+

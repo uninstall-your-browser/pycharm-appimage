@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PyCharm
+Exec=pycharm.sh %f
+Icon=Pycharm
+Comment=PyCharm
+Categories=Development;IDE;
+Terminal=false
+StartupNotify=true
+StartupWMClass=jetbrains-pycharm-community
