@@ -1,7 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=PyCharm Community
+Name=PyCharm-Community
+GenericName=PyCharm Community
 Exec=pycharm.sh %f
 Icon=Pycharm
 Comment=The pure Python IDE
