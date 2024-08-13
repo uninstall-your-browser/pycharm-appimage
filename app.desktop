@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=PyCharm Community
-Exec=pycharm.sh %f
+Exec=pycharm %f
 Icon=Pycharm
 Comment=The pure Python IDE
 Categories=Development;IDE;
