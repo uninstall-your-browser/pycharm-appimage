@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
+      - name: install fuse
+        run: sudo apt install libfuse2
       - name: Build
         id: build
         uses: uninstall-your-browser/appimage-bash@v1.2
