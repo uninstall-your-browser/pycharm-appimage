@@ -31,6 +31,7 @@ jobs:
         uses: uninstall-your-browser/appimage-bash@master
         with:
           version_url: "https://data.services.jetbrains.com/products/download?code=PC&platform=linux"
+          version_check: false
           version_file: "product-info.json"
           version_bash: "jq -r  .version"
           version_icon: "pycharm.svg"
